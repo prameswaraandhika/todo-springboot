@@ -22,7 +22,7 @@
 
     <body>
         <div class="container">
-            <h1 class="text-center">TODO List</h1>
+            <h1 class="text-center">Courses </h1>
             <a href="add-todo" class="btn btn-success mb-3">Add Todo</a>
             <table class="table table-bordered">
                 <thead>

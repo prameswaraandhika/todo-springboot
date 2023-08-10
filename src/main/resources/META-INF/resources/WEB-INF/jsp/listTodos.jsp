@@ -3,35 +3,35 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>TODO List</title>
+        <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css">
         <style>
-            table {
-                border-collapse: collapse;
+            body {
+                background-color: #f8f9fa;
             }
 
-            th,
-            td {
-                padding: 10px;
-                /* Adjust the padding value as needed */
-                border: 2px solid black;
+            .container {
+                margin-top: 50px;
+            }
+
+            .table {
+                background-color: #fff;
             }
         </style>
     </head>
 
     <body>
-        <center>
-            <div>
-                Welcome ${name}
-            </div>
-            <hr>
-            <h1>LIST TODO</h1>
-            <table>
+        <div class="container">
+            <h1 class="text-center">TODO List</h1>
+            <a href="add-todo" class="btn btn-success mb-3">Add Todo</a>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Description</th>
-                        <th>TargetDate</th>
-                        <th>isDone</th>
+                        <th>Target Date</th>
+                        <th>Status</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,9 @@
                     </c:forEach>
                 </tbody>
             </table>
-        </center>
+        </div>
+        <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+        <script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     </body>
 
     </html>

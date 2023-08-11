@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
@@ -27,22 +28,34 @@ public class TodoController {
         return "listTodos";
     }
 
-    @RequestMapping(value = "add-todo", method = RequestMethod.GET)
+    @RequestMapping(value = "form-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
         String username = model.get("name") != null ? model.get("name").toString() : "defaultUsername";
         model.put("todo", new Todo(0, username, "DefaultDesc", LocalDate.now(), false));
-        return "addTodo";
+        return "formTodo";
     }
 
-    @RequestMapping(value = "add-todo", method = RequestMethod.POST)
+    @RequestMapping(value = "form-todo", method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "addTodo";
+            return "formTodo";
         }
 
         String username = model.get("name") != null ? model.get("name").toString() : "defaultUsername";
         todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusDays(1), false);
+        return "redirect:list-todos";
+    }
+
+    @RequestMapping("delete-todo")
+    public String deleteTodo(@RequestParam int id) {
+        todoService.deleteTodoById(id);
+        return "redirect:list-todos";
+    }
+
+    @RequestMapping("update-todo")
+    public String showUpdateToPage(@RequestParam int id) {
+        todoService.deleteTodoById(id);
         return "redirect:list-todos";
     }
 }

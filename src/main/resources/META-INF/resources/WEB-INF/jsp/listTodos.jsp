@@ -46,7 +46,7 @@
                                 <a href="delete-todo?id=${todo.id}" class="btn btn-danger">
                                     <i class="fa fa-trash text-white"></i>
                                 </a>
-                                <a href="delete-todo?id=${todo.id}" class="btn btn-warning">
+                                <a href="update-todo?id=${todo.id}" class="btn btn-warning">
                                     <i class="fas fa-edit text-white"></i>
                                 </a>
                             </td>

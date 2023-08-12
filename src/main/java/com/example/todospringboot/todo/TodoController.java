@@ -37,13 +37,12 @@ public class TodoController {
 
     @RequestMapping(value = "form-todo", method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-
         if (result.hasErrors()) {
+            System.out.println("Has an error " + result);
             return "formTodo";
         }
-
         String username = model.get("name") != null ? model.get("name").toString() : "defaultUsername";
-        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusDays(1), false);
+        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
         return "redirect:list-todos";
     }
 
@@ -53,9 +52,22 @@ public class TodoController {
         return "redirect:list-todos";
     }
 
-    @RequestMapping("update-todo")
-    public String showUpdateToPage(@RequestParam int id) {
-        todoService.deleteTodoById(id);
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET)
+    public String showUpdateToPage(@RequestParam int id, ModelMap model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "formTodo";
+    }
+
+    @RequestMapping(value = "update-todo", method = RequestMethod.POST)
+    public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "formTodo";
+        }
+
+        String username = model.get("name") != null ? model.get("name").toString() : "defaultUsername";
+        todoService.updateTodo(todo);
         return "redirect:list-todos";
     }
 }

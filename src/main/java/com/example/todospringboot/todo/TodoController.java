@@ -38,7 +38,6 @@ public class TodoController {
     @RequestMapping(value = "form-todo", method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println("Has an error " + result);
             return "formTodo";
         }
         String username = model.get("name") != null ? model.get("name").toString() : "defaultUsername";

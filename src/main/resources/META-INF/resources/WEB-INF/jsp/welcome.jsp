@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ include file="common/header.jspf" %>
+    <%@ include file="common/navigation.jspf" %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+        <div class="container">
+            <div class="jumbotron mt-5">
+                <h1 class="display-4">Welcome, ${name}!</h1>
+                <p class="lead">Manage your todos with ease.</p>
+                <hr class="my-4">
+                <a class="btn btn-primary btn-lg" href="list-todos" role="button">View Todos</a>
+            </div>
+        </div>
 
-<body>
-    <center>
-        <div>WELCOME ${name}</div>
-        <hr>
-        <div><a href="list-todos">Click here to see todo!</a></div>
-    </center>
-</body>
-
-</html>
+        <%@ include file="common/footer.jspf" %>
